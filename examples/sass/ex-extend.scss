@@ -1,0 +1,19 @@
+@import '../../sass/sassybeam';
+
+%extend {
+    background: #000;
+}
+
+@include beam('block') {
+    width: auto;
+
+    @include beam('block__element') {
+        @extend %extend;
+        color: #0f0;
+
+        @include beam('block__element--alert') {
+            @extend %extend;
+            color: #f00;
+        }
+    }
+}

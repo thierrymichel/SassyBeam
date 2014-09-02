@@ -1,0 +1,21 @@
+@import '../../sass/sassybeam';
+
+@include beam('block') {
+    width: auto;
+
+    @include beam('block__element') {
+        color: #0f0;
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        & > p {
+            font-weight: bold;
+        }
+
+        @include beam('block__element--alert') {
+            color: #f00;
+        }
+    }
+}

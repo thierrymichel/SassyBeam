@@ -1,0 +1,20 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+.block, [class*="block--"] {
+  width: auto;
+}
+.block__element, [class*="block__element--"] {
+  color: #0f0;
+}
+@media screen and (min-width: 60em) {
+  .block__element, [class*="block__element--"] {
+    color: #fff;
+  }
+}
+[class*="block__element--"][class*="alert"] {
+  color: #f00;
+}
+@media screen and (min-width: 60em) {
+  [class*="block__element--"][class*="alert"] {
+    color: #000;
+  }
+}

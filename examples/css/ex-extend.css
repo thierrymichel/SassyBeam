@@ -1,0 +1,14 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+.block__element, [class*="block__element--"], [class*="block__element--"][class*="alert"] {
+  background: #000;
+}
+
+.block, [class*="block--"] {
+  width: auto;
+}
+.block__element, [class*="block__element--"] {
+  color: #0f0;
+}
+[class*="block__element--"][class*="alert"] {
+  color: #f00;
+}

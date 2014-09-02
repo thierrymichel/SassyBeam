@@ -1,0 +1,122 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+
+/**
+ * Get block or block__element segment
+ *
+ * ----------
+ * @param {string} $name block--modifier or block__element--modifier
+ * @return {string}
+ * ----------
+ */
+@function getbase($name) {
+    @return str-slice($name, 0, str-index($name, '--')-1);
+}
+
+/**
+ * Get modifier segment
+ * ----------
+ * @param {string} $name block--modifier or block__element--modifier
+ * @return {string}
+ * ----------
+ */
+@function getmodifier($name) {
+    @return str-slice($name, str-index($name, '--')+2);
+}
+
+/**
+ * BEAM magic mixin
+ * ----------
+ * @param {string} $name block, block\__element, block--modifier or block\__element--modifier, …
+ * @param {string} $state optionnal state(s) (is-state || .is-state || :state)
+ * @output Magic CSS ;)
+ * @example
+ * beam('block', 'is-collapsed') { … }
+ * // block[data-state="is-collapsed"]
+ * 
+ * beam('block', '.is-hidden') { … }
+ * // block.is-hidden
+ * 
+ * beam('block', ':focus') { … }
+ * // block:focus
+ * ----------
+ */
+@mixin beam($name, $states: null) {
+    $debug: '';
+
+    // if no state(s)
+    @if not $states {  
+        // if no modifier…
+        @if not str-index($name, '--') {
+
+            // main block/element class
+            @at-root {
+                .#{$name} {
+                    @content;
+                }
+            }
+            // attribute selector for “general rules” (block/element)
+            // note: '--' is added to avoid conflicts with block__element
+            //       [block--] doesn't match with [block]__element…
+            @at-root {
+                [class*="#{$name}--"] {
+                    @extend .#{$name} !optional;
+                }
+            }
+        }
+
+        // if modifier
+        @if str-index($name, '--') {
+            // attribute selectors fragments
+            $base: getbase($name)+'--';
+            $mod: getmodifier($name);
+
+            // attribute selector for “specific rules” (modifier)
+            @at-root {
+                [class*="#{$base}"][class*="#{$mod}"] {
+                    @content;
+                }
+            }
+        }
+    }
+    // if state(s)
+    @else {
+        // check if state(s) is(are) pseudoclass(es)
+        $pseudoclasses: (link, visited, hover, active, focus);
+        $is-pseudo: false;
+
+        @each $state in $states {
+            @if index($pseudoclasses, $state) {
+                $is-pseudo: true;
+            }
+        }
+        @if $is-pseudo {
+            // group selctor
+            $sel: ();
+            @each $state in $states {
+                $sel: append($sel, unquote('[class*="#{$name}"]:#{$state}'), comma);
+            }
+            @at-root {
+                #{$sel} {
+                    @content;
+                }
+            }
+        }
+        // check if state is .state or [data-state]
+        @else {
+            @if str-index($states, '.') {
+                @at-root {
+                    [class*="#{$name}"]#{$states} {
+                        @content;
+                    }
+                }
+            }
+            @else {
+                @at-root {
+                    [class*="#{$name}"][data-state*="#{$states}"] {
+                        @content;
+                    }
+                }
+            } // end @if .class or [data]
+        } // end @if is-pseudo
+    } // end @if state
+}
