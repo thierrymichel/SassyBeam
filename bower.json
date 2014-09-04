@@ -1,0 +1,28 @@
+{
+  "name": "SassyBeam",
+  "version": "0.1.0",
+  "homepage": "http://git.io/sassybeam",
+  "authors": [
+    "Thierry Michel <thmichel@gmail.com>"
+  ],
+  "description": "A Sass mixin to deal with a “BEM-like” notation and a simplified HTML markup",
+  "main": "sass/_SassyBeam.scss",
+  "keywords": [
+    "sass",
+    "mixins",
+    "modular",
+    "bem",
+    "smacss"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "*.sublime-*",
+    "TODO.md",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
