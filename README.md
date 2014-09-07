@@ -21,7 +21,7 @@ It is based on [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-h
     
 3. Managing the states via pseudo-classes, classes or a data-state attribute.
 4. Allowing the nesting of blocks and elements … or not!
-5. Maintaining the integrity of class names (no dynamic concatenation like `#{$block}__element`)/
+5. Maintaining the integrity of class names (no dynamic concatenation like `#{$block}__element`).
 
 ## Usage
 
