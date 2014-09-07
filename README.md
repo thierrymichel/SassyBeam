@@ -4,12 +4,12 @@
 
 Beam (or SassyBeam) allows the use of a [BEM](http://bem.info/method/definitions/)-like notation but with a lighter HTML markup.
 
-It is based on [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/) and [Harry Roberts's adaptations](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) while adding my personal touch…
+It is a combo based on BEM, [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/), [Harry Roberts's adaptations](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) and [Jonathan Snook's amazing SMACSS](https://smacss.com/) … while adding my personal touch…
 
-### The Beam goals
+### The SassyBeam goals
 
 1. Applying a BEM method like `.block__element--modifier`.
-2. Keeping a light HTML markup:
+2. __Keeping a light HTML markup!__
 
     ```
     <div class="block block--mod1 block--mod2 block--mod3">
@@ -19,7 +19,7 @@ It is based on [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-h
     <div class="block--mod1--mod2--mod3">
     ```
     
-3. Managing the states via pseudo-classes, classes or a data-state attribute.
+3. Managing easily the states via pseudo-classes, classes or a data-state attribute.
 4. Allowing the nesting of blocks and elements … or not!
 5. Maintaining the integrity of class names (no dynamic concatenation like `#{$block}__element`).
 
