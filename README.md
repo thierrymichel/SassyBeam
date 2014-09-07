@@ -29,6 +29,55 @@ It is based on [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-h
 $ bower install SassyBeam
 ```
 
+#### .html
+
+```
+<div class="foo">
+    <div class="foo__baz"></div>
+    <div class="foo__baz--qux"></div>
+</div>
+<div class="foo--bar"></div>
+```
+
+#### .scss
+
+```
+@import 'sassybeam';
+
+@include beam('foo') {
+    property: value;
+
+    @include beam('foo--bar') {
+        property: value;
+    }
+
+    @include beam('foo__baz') {
+        property: value;
+
+        @include beam('foo__baz--qux') {
+            property: value;
+        }
+    }
+}
+```
+
+#### .css (output)
+
+```
+.foo, [class*="foo--"] {
+  property: value;
+}
+[class*="foo--"][class*="bar"] {
+  property: value;
+}
+.foo__baz, [class*="foo__baz--"] {
+  property: value;
+}
+[class*="foo__baz--"][class*="qux"] {
+  property: value;
+}
+```
+
 ## Extra
 
 * [Examples](https://github.com/thierrymichel/SassyBeam/tree/master/examples) (more coming soon…)
