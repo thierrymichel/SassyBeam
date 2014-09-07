@@ -1,0 +1,13 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+.block, [class*="block--"] {
+  property: value;
+}
+[class*="block"].is-something {
+  property: value;
+}
+[class*="block"][data-state*="is-something"] {
+  property: value;
+}
+[class*="block"]:focus {
+  property: value;
+}

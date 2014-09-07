@@ -1,0 +1,17 @@
+@import '../../sass/sassybeam';
+
+@include beam('block') {
+    property: value;
+
+    @include beam('block', '.is-something') {
+        property: value;
+    }
+
+    @include beam('block', 'is-something') {
+        property: value;
+    }
+
+    @include beam('block', 'focus') {
+        property: value;
+    }
+}
