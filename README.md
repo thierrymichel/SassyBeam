@@ -4,7 +4,7 @@
 
 Beam (or SassyBeam) allows the use of a [BEM](http://bem.info/method/definitions/)-like notation but with a lighter HTML markup.
 
-It is a combo based on BEM, [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/), [Harry Roberts's adaptations](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) and [Jonathan Snook's amazing SMACSS](https://smacss.com/) … while adding my personal touch…
+It is a combo based on BEM, [Nicolas Gallagher's thoughs](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/), [Harry Roberts's adaptations](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) and [Jonathan Snook's amazing SMACSS](https://smacss.com/) … while adding my personal touch!
 
 ### The SassyBeam goals
 
