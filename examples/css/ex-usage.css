@@ -1,0 +1,13 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+.foo, [class*="foo--"] {
+  property: value;
+}
+[class*="foo--"][class*="bar"] {
+  property: value;
+}
+[class*="foo--"][class*="baz"] {
+  property: value;
+}
+[class*="foo--"][class*="qux"] {
+  property: value;
+}
