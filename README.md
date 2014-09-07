@@ -43,7 +43,7 @@ $ bower install SassyBeam
 
 #### .scss
 
-```sass
+```scss
 @import 'sassybeam';
 
 @include beam('foo') {
