@@ -33,7 +33,7 @@ $ bower install SassyBeam
 
 #### .html
 
-```
+```html
 <div class="foo">
     <div class="foo__baz"></div>
     <div class="foo__baz--qux"></div>
@@ -43,7 +43,7 @@ $ bower install SassyBeam
 
 #### .scss
 
-```
+```sass
 @import 'sassybeam';
 
 @include beam('foo') {
@@ -65,7 +65,7 @@ $ bower install SassyBeam
 
 #### .css (output)
 
-```
+```css
 .foo, [class*="foo--"] {
   property: value;
 }
