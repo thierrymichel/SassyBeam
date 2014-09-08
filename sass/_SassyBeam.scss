@@ -8,7 +8,7 @@
  * @return {string}
  * ----------
  */
-@function getbase($name) {
+@function beam-getbase($name) {
     @return str-slice($name, 0, str-index($name, '--')-1);
 }
 
@@ -19,7 +19,7 @@
  * @return {string}
  * ----------
  */
-@function getmodifier($name) {
+@function beam-getmodifier($name) {
     @return str-slice($name, str-index($name, '--')+2);
 }
 
@@ -67,8 +67,8 @@
         // if modifier
         @if str-index($name, '--') {
             // attribute selectors fragments
-            $base: getbase($name)+'--';
-            $mod: getmodifier($name);
+            $base: beam-getbase($name)+'--';
+            $mod: beam-getmodifier($name);
 
             // attribute selector for “specific rules” (modifier)
             @at-root {
