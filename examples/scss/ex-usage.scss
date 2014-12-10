@@ -1,0 +1,17 @@
+@import '../../scss/sassybeam';
+
+@include beam('foo') {
+    property: value;
+
+    @include beam('foo--bar') {
+        property: value;
+    }
+
+    @include beam('foo--baz') {
+        property: value;
+    }
+
+    @include beam('foo--qux') {
+        property: value;
+    }
+}

@@ -1,0 +1,148 @@
+/*! SassyBeam v0.0.1 | MIT License | http://git.io/sassybeam */
+
+/**
+ * Get name (block or block__element segment)
+ *
+ * ----------
+ * @param {string} $class block--modifier or block__element--modifier
+ * @return {string}
+ * ----------
+ */
+@function beam-get-name($class) {
+    @return str-slice($class, 0, str-index($class, '--')-1);
+}
+
+/**
+ * Get modifier segment
+ * ----------
+ * @param {string} $class block--modifier or block__element--modifier
+ * @return {string}
+ * ----------
+ */
+@function beam-get-modifier($class) {
+    @return str-slice($class, str-index($class, '--')+2);
+}
+
+/**
+ * Check if name is not already used
+ *
+ * ----------
+ * @param {string} $name block or block__element
+ * @return {boolean}
+ * ----------
+ */
+@function beam-check-name($name) {
+    @if index($test, $name) {
+      @return true;
+    }
+    @else {
+      @return false;
+    }
+}
+
+/**
+ * Names
+ * ----------
+ * @name {list} $beam-names
+ * @description list of used names to avoid duplicate or collision
+ * ----------
+ */
+$beam-names: ()!default;
+
+/**
+ * BEAM magic mixin
+ * ----------
+ * @param {string} $class block, block\__element, block--modifier or block\__element--modifier, …
+ * @param {string} $state optionnal state(s) (is-state || .is-state || :state)
+ * @output Magic CSS ;)
+ * @example
+ * beam('block', 'is-collapsed') { … }
+ * // block[data-state="is-collapsed"]
+ * 
+ * beam('block', '.is-hidden') { … }
+ * // block.is-hidden
+ * 
+ * beam('block', ':focus') { … }
+ * // block:focus
+ * ----------
+ */
+@mixin beam($class, $states: null) {
+    $debug: '';
+
+    // if no state(s)
+    @if not $states {  
+        // if no modifier…
+        @if not str-index($class, '--') {
+
+            // main block/element class
+            @at-root {
+                .#{$class} {
+                    @content;
+                }
+            }
+            // attribute selector for “general rules” (block/element)
+            // note: '--' is added to avoid conflicts with block__element
+            //       [block--] doesn't match with [block]__element…
+            @at-root {
+                [class*="#{$class}--"] {
+                    @extend .#{$class} !optional;
+                }
+            }
+        }
+
+        // if modifier
+        @if str-index($class, '--') {
+            // attribute selectors fragments
+            $base: beam-get-name($class)+'--';
+            $mod: beam-get-modifier($class);
+
+            // attribute selector for “specific rules” (modifier)
+            @at-root {
+                [class*="#{$base}"][class*="#{$mod}"] {
+                    @content;
+                }
+            }
+        }
+    }
+    // if state(s)
+    @else {
+        // check if state(s) is(are) pseudoclass(es)
+        $pseudoclasses: (link, visited, hover, active, focus);
+        $is-pseudo: false;
+
+        @each $state in $states {
+            @if index($pseudoclasses, $state) {
+                $is-pseudo: true;
+            }
+        }
+        @if $is-pseudo {
+            // group selctor
+            $sel: ();
+            @each $state in $states {
+                $sel: append($sel, unquote('[class*="#{$class}"]:#{$state}'), comma);
+            }
+            @at-root {
+                #{$sel} {
+                    @content;
+                }
+            }
+        }
+        // check if state is .state or [data-state]
+        @else {
+            @if str-index($states, '.') {
+                @at-root {
+                    [class*="#{$class}"]#{$states} {
+                        @content;
+                    }
+                }
+            }
+            @else {
+                @at-root {
+                    [class*="#{$class}"][data-state*="#{$states}"] {
+                        @content;
+                    }
+                }
+            } // end @if .class or [data]
+        } // end @if is-pseudo
+    } // end @if state
+}
