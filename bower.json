@@ -6,7 +6,7 @@
     "Thierry Michel <thmichel@gmail.com>"
   ],
   "description": "A Sass mixin to deal with a “BEM-like” notation and a simplified HTML markup",
-  "main": "sass/_SassyBeam.scss",
+  "main": "scss/_SassyBeam.scss",
   "keywords": [
     "sass",
     "mixins",
@@ -19,6 +19,7 @@
   "ignore": [
     "**/.*",
     "*.sublime-*",
+    "*.codekit",
     "TODO.md",
     "node_modules",
     "bower_components",

@@ -1,1 +1,4 @@
 *.sublime-*
+*.codekit
+.sass-cache
+test
