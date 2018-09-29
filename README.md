@@ -1,4 +1,10 @@
-# SassyBeam (draft)
+# SassyBeam (deprecated)
+
+![stability-deprecated](https://img.shields.io/badge/stability-deprecated-red.svg)
+
+> Use [sassy-beam](https://github.com/thierrymichel/sassy-beam)
+
+---
 
 Beam (or SassyBeam) allows the use of a [BEM](http://bem.info/method/definitions/)-like notation but with a lighter HTML markup.
 
